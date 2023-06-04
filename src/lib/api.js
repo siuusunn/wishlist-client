@@ -8,8 +8,9 @@ const ENDPOINTS = {
   singleArtist: (pk) => `/api/artists/${pk}`,
   allWishlists: `${process.env.REACT_APP_BASE_URL}/api/users/`,
   singleWishlist: (pk) => `${process.env.REACT_APP_BASE_URL}/api/users/${pk}`,
-  login: `http://localhost:8000/api/users/login/`,
-  register: `${process.env.REACT_APP_BASE_URL}/api/users/register/`
+  login: `${process.env.REACT_APP_BASE_URL}/api/users/login/`,
+  register: `${process.env.REACT_APP_BASE_URL}/api/users/register/`,
+  cloudinary: `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}/image/upload`
 };
 
 const GET = (endpoint) => axios.get(endpoint);
