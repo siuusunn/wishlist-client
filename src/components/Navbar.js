@@ -20,6 +20,7 @@ export default function Navbar() {
         <Link to='/' className='navbar-item'>
           HOME
         </Link>
+        <Link to='/tracks'>TRACKS</Link>
         {AUTH.getSuperUser() === 'true' ? (
           <Link to='/additem' className='navbar-item'>
             ALL WISHLISTS
