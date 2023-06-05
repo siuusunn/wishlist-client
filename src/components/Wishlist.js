@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { API } from '../lib/api';
 import { AUTH } from '../lib/auth';
 import { useAuthenticated } from '../hooks/useAuthenticated';
+import Search from './Search';
 
 export default function Wishlist() {
   const [userData, setUserData] = useState(null);
@@ -23,6 +24,7 @@ export default function Wishlist() {
 
   return (
     <>
+      <Search />
       <h1>{userData?.owner.username}'s Wishlist</h1>
       {userData?.tracks.map((track) => (
         <>
