@@ -1,15 +1,17 @@
 import { Link } from 'react-router-dom';
 import { AUTH } from '../lib/auth';
 import { useAuthenticated } from '../hooks/useAuthenticated';
+import { useNavigate } from 'react-router-dom';
 
 export default function Navbar() {
+  const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useAuthenticated();
 
   const logout = () => {
     AUTH.deleteToken();
     setIsLoggedIn(false);
     AUTH.isSuperUser('false');
-    window.location.reload();
+    navigate('/');
   };
 
   return (

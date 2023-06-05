@@ -28,7 +28,7 @@ export default function Login() {
         console.log(data);
         AUTH.setToken(data.token);
         AUTH.isSuperUser(data.is_superuser);
-        navigate('/');
+        navigate('/wishlist');
         console.log('Successfully logged in');
       });
     } catch (error) {
