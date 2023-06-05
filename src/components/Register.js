@@ -3,6 +3,8 @@ import { API } from '../lib/api';
 import { AUTH } from '../lib/auth';
 import { useNavigate } from 'react-router-dom';
 import { VisibilityOffOutlined, VisibilityOutlined } from '@mui/icons-material';
+import { Paper, Button } from '@mui/material';
+import '../styles/Register.scss';
 
 export default function Register() {
   const navigate = useNavigate();
@@ -70,29 +72,11 @@ export default function Register() {
     }
   };
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     API.POST(API.ENDPOINTS.register, formFields).then(({ data }) => {
-  //       console.log(data);
-  //       API.POST(API.ENDPOINTS.login, {
-  //         email: formFields.email,
-  //         password: formFields.password
-  //       })
-  //         .then(({ data }) => {
-  //           API.POST(API.ENDPOINTS.allPockets, data);
-  //           AUTH.setToken(data.token);
-  //           navigate('/');
-  //         })
-  //         .catch((e) => console.error(e));
-  //     });
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
-
   return (
-    <>
+    <Paper
+      elevation={3}
+      sx={{ width: '25dvw', height: '80dvh', mt: '5dvh', ml: '1dvw' }}
+    >
       <div className='register-container'>
         <h1 className='register-title'>REGISTER</h1>
         <form onSubmit={handleSubmit}>
@@ -203,12 +187,17 @@ export default function Register() {
               onChange={handleFileChange}
               required
             ></input>
-            <button type='submit' className='register-button'>
+            <Button
+              variant='contained'
+              type='submit'
+              className='register-button'
+              sx={{ mt: '5dvh' }}
+            >
               SIGN UP
-            </button>
+            </Button>
           </div>
         </form>
       </div>
-    </>
+    </Paper>
   );
 }

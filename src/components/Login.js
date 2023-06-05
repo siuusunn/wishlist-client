@@ -3,6 +3,8 @@ import { API } from '../lib/api';
 import { AUTH } from '../lib/auth';
 import { useNavigate } from 'react-router-dom';
 import { VisibilityOffOutlined, VisibilityOutlined } from '@mui/icons-material';
+import { Paper, Button } from '@mui/material';
+import '../styles/Login.scss';
 
 export default function Login() {
   const navigate = useNavigate();
@@ -37,7 +39,10 @@ export default function Login() {
   };
 
   return (
-    <>
+    <Paper
+      elevation={3}
+      sx={{ width: '25dvw', height: '80dvh', mt: '5dvh', mr: '1dvw' }}
+    >
       <div className='login-container'>
         <h1 className='login-title'>LOGIN</h1>
         <form onSubmit={handleSubmit}>
@@ -79,12 +84,17 @@ export default function Login() {
                 />
               )}
             </div>
-            <button type='submit' className='login-button'>
+            <Button
+              variant='contained'
+              type='submit'
+              className='login-button'
+              sx={{ mt: '2dvh' }}
+            >
               SIGN IN
-            </button>
+            </Button>
           </div>
         </form>
       </div>
-    </>
+    </Paper>
   );
 }

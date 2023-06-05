@@ -1,0 +1,39 @@
+.register-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.register-input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.register-label {
+  font-size: 16px;
+  margin-top: 1dvh;
+}
+
+.register-input {
+  width: 16dvw;
+  margin-top: 1dvh;
+}
+
+.register-password-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.register-password-input {
+  width: 15dvw;
+  margin-top: 1dvh;
+  margin-bottom: 2dvh;
+}
+
+.visibility-button {
+  cursor: pointer;
+  margin-left: 0.2dvw;
+  padding: 0;
+}
