@@ -1,0 +1,39 @@
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-label {
+  font-size: 16px;
+  margin-top: 1dvh;
+}
+
+.login-input {
+  width: 16dvw;
+  margin-top: 1dvh;
+}
+
+.login-password-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-password-input {
+  width: 15dvw;
+  margin-top: 1dvh;
+  margin-bottom: 2dvh;
+}
+
+.visibility-button {
+  cursor: pointer;
+  margin-left: 0.2dvw;
+  padding: 0;
+}
