@@ -1,33 +1,28 @@
 import { useState } from 'react';
-import axios from 'axios';
 import { API } from '../lib/api';
 
-function TrackSearch() {
+function TrackSearch({ wishlistId, wishlistData }) {
   const [searchQuery, setSearchQuery] = useState('');
+  const [isUpdated, setIsUpdated] = useState(false);
   const [tracks, setTracks] = useState([]);
-
-  // const handleSearch = async () => {
-  //   try {
-  //     const response = await axios.get('/tracks/search/', {
-  //       params: {
-  //         isrc: searchQuery
-  //       }
-  //     });
-  //     setTracks(response.data);
-  //   } catch (error) {
-  //     console.error('Error searching for tracks:', error);
-  //   }
-  // };
 
   const handleSearch = async () => {
     try {
       API.GET(API.ENDPOINTS.searchTrack(searchQuery)).then(({ data }) => {
         setTracks(data);
-        console.log(data);
+        // console.log(data);
       });
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const handleAddTrack = async (trackId) => {
+    const existingTracksInWishlist = wishlistData.tracks.map(
+      (track) => track.id
+    );
+    existingTracksInWishlist.push(trackId);
+    console.log(existingTracksInWishlist);
   };
 
   return (
@@ -40,9 +35,9 @@ function TrackSearch() {
       <button onClick={handleSearch}>Search</button>
 
       {tracks?.map((track) => (
-        <>
-          <h4 key={track.id}>Title: {track.title}</h4>
-          <h4 key={track.artist}>
+        <div key={track.id}>
+          <h4>Title: {track.title}</h4>
+          <h4>
             Artists:{' '}
             {track?.artist.map((artist) => (
               <li key={artist.id}>{artist.name}</li>
@@ -50,7 +45,10 @@ function TrackSearch() {
           </h4>
           <h4>Duration: {track.duration}</h4>
           <h4>ISRC: {track.isrc}</h4>
-        </>
+          <button key={track.id} onClick={() => handleAddTrack(track.id)}>
+            Add Track to Watchlist
+          </button>
+        </div>
       ))}
     </div>
   );

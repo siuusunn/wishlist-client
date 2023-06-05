@@ -14,7 +14,7 @@ export default function Wishlist() {
     API.GET(API.ENDPOINTS.singleWishlist(id)).then(({ data }) => {
       setUserData(data);
       setIsUpdated(false);
-      console.log(data);
+      // console.log(data);
     });
   }, [id, isUpdated]);
 
@@ -24,15 +24,15 @@ export default function Wishlist() {
 
   return (
     <>
-      <Search />
+      <Search wishlistId={id} wishlistData={userData} />
       <h1>{userData?.owner.username}'s Wishlist</h1>
       {userData?.tracks.map((track) => (
-        <>
+        <div key={track.id}>
           <h4>
             {track?.artist.map((artist) => artist.name)} - {track.title} -{' '}
             {track.isrc}
           </h4>
-        </>
+        </div>
       ))}
     </>
   );
