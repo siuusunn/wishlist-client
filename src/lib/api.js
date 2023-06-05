@@ -4,6 +4,8 @@ import { AUTH } from './auth';
 const ENDPOINTS = {
   allTracks: `${process.env.REACT_APP_BASE_URL}/api/tracks/`,
   singleTrack: (pk) => `${process.env.REACT_APP_BASE_URL}/api/tracks/${pk}/`,
+  searchTrack: (params) =>
+    `${process.env.REACT_APP_BASE_URL}/api/tracks/search/?isrc=${params}`,
   allArtists: `${process.env.REACT_APP_BASE_URL}/api/artists/`,
   singleArtist: (pk) => `/api/artists/${pk}`,
   allWishlists: `${process.env.REACT_APP_BASE_URL}/api/wishlists/`,
