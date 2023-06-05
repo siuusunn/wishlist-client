@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { API } from '../lib/api';
 
-function TrackSearch({ wishlistId, wishlistData }) {
+function TrackSearch({ wishlistId, wishlistData, handleUpdate }) {
   const [searchQuery, setSearchQuery] = useState('');
   const [isUpdated, setIsUpdated] = useState(false);
   const [tracks, setTracks] = useState([]);
@@ -10,7 +10,6 @@ function TrackSearch({ wishlistId, wishlistData }) {
     try {
       API.GET(API.ENDPOINTS.searchTrack(searchQuery)).then(({ data }) => {
         setTracks(data);
-        // console.log(data);
       });
     } catch (error) {
       console.log(error);
@@ -22,7 +21,20 @@ function TrackSearch({ wishlistId, wishlistData }) {
       (track) => track.id
     );
     existingTracksInWishlist.push(trackId);
-    console.log(existingTracksInWishlist);
+    const requestBody = { tracks: existingTracksInWishlist };
+
+    try {
+      await API.PUT(
+        API.ENDPOINTS.singleWishlist(wishlistId),
+        requestBody,
+        API.getHeaders()
+      );
+      setIsUpdated(true);
+      setTracks([]);
+      handleUpdate();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

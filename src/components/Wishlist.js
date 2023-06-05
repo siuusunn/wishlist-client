@@ -18,13 +18,17 @@ export default function Wishlist() {
     });
   }, [id, isUpdated]);
 
-  // const handleUpdate = (e) => {
-  //   setIsUpdated(true);
-  // };
+  const handleUpdate = (e) => {
+    setIsUpdated(true);
+  };
 
   return (
     <>
-      <Search wishlistId={id} wishlistData={userData} />
+      <Search
+        wishlistId={id}
+        wishlistData={userData}
+        handleUpdate={handleUpdate}
+      />
       <h1>{userData?.owner.username}'s Wishlist</h1>
       {userData?.tracks.map((track) => (
         <div key={track.id}>
