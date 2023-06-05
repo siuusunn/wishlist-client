@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { API } from '../lib/api';
 
 function TrackSearch({ wishlistId, wishlistData, handleUpdate }) {
@@ -37,6 +37,29 @@ function TrackSearch({ wishlistId, wishlistData, handleUpdate }) {
     }
   };
 
+  const handleDeleteTrack = async (trackId) => {
+    const existingTracksInWishlist = wishlistData.tracks.map(
+      (track) => track.id
+    );
+    const updatedTracks = existingTracksInWishlist.filter(
+      (track) => track !== trackId
+    );
+    const requestBody = { tracks: updatedTracks };
+
+    try {
+      await API.PUT(
+        API.ENDPOINTS.singleWishlist(wishlistId),
+        requestBody,
+        API.getHeaders()
+      );
+      setIsUpdated(true);
+      setTracks([]);
+      handleUpdate();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div>
       <input
@@ -59,6 +82,9 @@ function TrackSearch({ wishlistId, wishlistData, handleUpdate }) {
           <h4>ISRC: {track.isrc}</h4>
           <button key={track.id} onClick={() => handleAddTrack(track.id)}>
             Add Track to Watchlist
+          </button>
+          <button key={track.name} onClick={() => handleDeleteTrack(track.id)}>
+            Delete Track from Watchlist
           </button>
         </div>
       ))}
