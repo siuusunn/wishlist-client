@@ -3,11 +3,12 @@ import { AUTH } from './auth';
 
 const ENDPOINTS = {
   allTracks: `${process.env.REACT_APP_BASE_URL}/api/tracks/`,
-  singleTrack: (pk) => `${process.env.REACT_APP_BASE_URL}/api/items/${pk}`,
+  singleTrack: (pk) => `${process.env.REACT_APP_BASE_URL}/api/tracks/${pk}/`,
   allArtists: `${process.env.REACT_APP_BASE_URL}/api/artists/`,
   singleArtist: (pk) => `/api/artists/${pk}`,
-  allWishlists: `${process.env.REACT_APP_BASE_URL}/api/users/`,
-  singleWishlist: (pk) => `${process.env.REACT_APP_BASE_URL}/api/users/${pk}`,
+  allWishlists: `${process.env.REACT_APP_BASE_URL}/api/wishlists/`,
+  singleWishlist: (pk) =>
+    `${process.env.REACT_APP_BASE_URL}/api/wishlists/${pk}/`,
   login: `${process.env.REACT_APP_BASE_URL}/api/users/login/`,
   register: `${process.env.REACT_APP_BASE_URL}/api/users/register/`,
   cloudinary: `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}/image/upload`
