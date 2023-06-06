@@ -32,9 +32,6 @@ export default function Navbar() {
                 HOME
               </Link>
             </Typography>
-            <Typography variant='h6' component='div' sx={{ mr: 2 }}>
-              <Link to='/tracks'>TRACKS</Link>
-            </Typography>
             {AUTH.getSuperUser() === 'true' ? (
               <Typography variant='h6' component='div' sx={{ mr: 2 }}>
                 <Link to='/additem' className='navbar-item'>
@@ -46,6 +43,9 @@ export default function Navbar() {
             )}
             {isLoggedIn ? (
               <>
+                <Typography variant='h6' component='div' sx={{ mr: 2 }}>
+                  <Link to='/tracks'>TRACKS</Link>
+                </Typography>
                 <Typography variant='h6' component='div' sx={{ mr: 2 }}>
                   <Link to='/wishlist'>WISHLIST</Link>
                 </Typography>
