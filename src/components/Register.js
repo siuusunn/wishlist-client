@@ -14,8 +14,8 @@ export default function Register() {
     password: '',
     password_confirmation: '',
     first_name: '',
-    last_name: ''
-    // profile_image: ''
+    last_name: '',
+    profile_image: ''
   });
   const [file, setFile] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -66,7 +66,7 @@ export default function Register() {
 
       AUTH.setToken(loginData.data.token);
 
-      navigate('/');
+      navigate('/wishlist');
     } catch (e) {
       console.error(e);
     }

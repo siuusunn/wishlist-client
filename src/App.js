@@ -2,8 +2,9 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
-import LoginAndRegister from './components/LoginAndRegister';
-import AllTracks from './components/allTracks';
+import Login from './components/Login';
+import Register from './components/Register';
+import AllTracks from './components/AllTracks';
 import Wishlist from './components/Wishlist';
 
 window.Buffer = window.Buffer || require('buffer').Buffer;
@@ -15,7 +16,8 @@ function App() {
         <Navbar />
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='/loginregister' element={<LoginAndRegister />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/register' element={<Register />} />
           <Route path='/tracks' element={<AllTracks />} />
           <Route path='/wishlist' element={<Wishlist />} />
         </Routes>
