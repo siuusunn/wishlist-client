@@ -58,8 +58,13 @@ export default function Navbar() {
             ) : (
               <>
                 <Typography variant='h6' component='div' sx={{ mr: 2 }}>
-                  <Link to='/loginregister' className='navbar-item'>
-                    LOGIN & REGISTER
+                  <Link to='/login' className='navbar-item'>
+                    LOGIN
+                  </Link>
+                </Typography>
+                <Typography variant='h6' component='div' sx={{ mr: 2 }}>
+                  <Link to='/register' className='navbar-item'>
+                    REGISTER
                   </Link>
                 </Typography>
               </>

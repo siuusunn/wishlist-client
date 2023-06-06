@@ -3,6 +3,7 @@ import { API } from '../lib/api';
 import { AUTH } from '../lib/auth';
 import { useAuthenticated } from '../hooks/useAuthenticated';
 import Search from './Search';
+import ProfilePicture from './ProfilePicture';
 
 export default function Wishlist() {
   const [userData, setUserData] = useState(null);
@@ -14,7 +15,7 @@ export default function Wishlist() {
     API.GET(API.ENDPOINTS.singleWishlist(id)).then(({ data }) => {
       setUserData(data);
       setIsUpdated(false);
-      // console.log(data);
+      console.log(data);
     });
   }, [id, isUpdated]);
 
@@ -28,6 +29,11 @@ export default function Wishlist() {
         wishlistId={id}
         wishlistData={userData}
         handleUpdate={handleUpdate}
+      />
+      <ProfilePicture
+        cloudinaryImageId={userData?.owner.profile_image}
+        imageWidth={100}
+        imageHeight={100}
       />
       <h1>{userData?.owner.username}'s Wishlist</h1>
       {userData?.tracks.map((track) => (
