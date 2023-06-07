@@ -4,6 +4,7 @@ import { AUTH } from '../lib/auth';
 import { useAuthenticated } from '../hooks/useAuthenticated';
 import Search from './Search';
 import ProfilePicture from './ProfilePicture';
+import '../styles/Wishlist.scss';
 
 export default function Wishlist() {
   const [userData, setUserData] = useState(null);
@@ -24,28 +25,37 @@ export default function Wishlist() {
   };
 
   return (
-    <>
-      <Search
-        wishlistId={id}
-        wishlistData={userData}
-        handleUpdate={handleUpdate}
-      />
-      <ProfilePicture
-        cloudinaryImageId={userData?.owner.profile_image}
-        imageWidth={120}
-        imageHeight={120}
-        radius={20}
-        backgroundColor={'white'}
-      />
-      <h1>{userData?.owner.username}'s Wishlist</h1>
-      {userData?.tracks.map((track) => (
-        <div key={track.id}>
-          <h4>
-            {track?.artist.map((artist) => artist.name)} - {track.title} -{' '}
-            {track.isrc}
-          </h4>
+    <div className='wishlist-container'>
+      <div className='user-wishlist-container'>
+        <div className='user-wishlist-title-container'>
+          <ProfilePicture
+            cloudinaryImageId={userData?.owner.profile_image}
+            imageWidth={120}
+            imageHeight={120}
+            radius={20}
+            backgroundColor={'white'}
+          />
+          <h1>{userData?.owner.username}'s Wishlist</h1>
         </div>
-      ))}
-    </>
+
+        <ol className='user-wishlist-tracks-container'>
+          {userData?.tracks.map((track) => (
+            <div key={track.id}>
+              <li>
+                {track?.artist.map((artist) => artist.name)} - {track.title} -{' '}
+                {track.isrc}
+              </li>
+            </div>
+          ))}
+        </ol>
+      </div>
+      <div className='search-container'>
+        <Search
+          wishlistId={id}
+          wishlistData={userData}
+          handleUpdate={handleUpdate}
+        />
+      </div>
+    </div>
   );
 }

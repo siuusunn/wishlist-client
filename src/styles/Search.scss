@@ -1,0 +1,17 @@
+.search-component-container {
+  display: flex;
+  flex-direction: column;
+
+  input {
+    margin-right: 0.5vw;
+  }
+
+  .search-buttons-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .edit-wishlist-button {
+    margin-top: 0.5vh;
+  }
+}
