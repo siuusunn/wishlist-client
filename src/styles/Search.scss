@@ -1,17 +1,72 @@
 .search-component-container {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modal-content {
+  background-color: #fff;
+  width: 90%;
+  max-width: 600px;
+  padding: 20px;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.search-input-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
 
   input {
-    margin-right: 0.5vw;
+    margin-right: 10px;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
   }
 
-  .search-buttons-container {
-    display: flex;
-    flex-direction: column;
+  button {
+    padding: 8px 16px;
+    border-radius: 4px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    cursor: pointer;
   }
+}
+
+.track-details {
+  margin-bottom: 20px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-buttons-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  align-items: center;
 
   .edit-wishlist-button {
-    margin-top: 0.5vh;
+    margin-top: 10px;
   }
 }
