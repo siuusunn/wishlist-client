@@ -4,7 +4,7 @@ import Navbar from './components/Navbar';
 import Home from './components/Home';
 import Login from './components/Login';
 import Register from './components/Register';
-import AllTracks from './components/AllTracks';
+import AllTracks from './components/allTracks';
 import Wishlist from './components/Wishlist';
 
 window.Buffer = window.Buffer || require('buffer').Buffer;

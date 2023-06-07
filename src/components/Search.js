@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { API } from '../lib/api';
+import { Button } from '@mui/material';
+import '../styles/Search.scss';
 
 function TrackSearch({ wishlistId, wishlistData, handleUpdate }) {
   const [searchQuery, setSearchQuery] = useState('');
@@ -62,31 +64,49 @@ function TrackSearch({ wishlistId, wishlistData, handleUpdate }) {
   };
 
   return (
-    <div>
-      <input
-        type='text'
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
-      />
-      <button onClick={handleSearch}>Search</button>
+    <div className='search-component-container'>
+      <h1>Add/Delete Track</h1>
+      <div>
+        <input
+          type='text'
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          placeholder='ISRC'
+        />
+        <button onClick={handleSearch}>Search</button>
+      </div>
 
       {tracks?.map((track) => (
         <div key={track.id}>
-          <h4>Title: {track.title}</h4>
-          <h4>
+          <p>Title: {track.title}</p>
+          <p>
             Artists:{' '}
             {track?.artist.map((artist) => (
               <li key={artist.id}>{artist.name}</li>
             ))}
-          </h4>
-          <h4>Duration: {track.duration}</h4>
-          <h4>ISRC: {track.isrc}</h4>
-          <button key={track.id} onClick={() => handleAddTrack(track.id)}>
-            Add Track to Watchlist
-          </button>
-          <button key={track.name} onClick={() => handleDeleteTrack(track.id)}>
-            Delete Track from Watchlist
-          </button>
+          </p>
+          <p>Duration: {track.duration}</p>
+          <p>ISRC: {track.isrc}</p>
+          <div className='search-buttons-container'>
+            <Button
+              key={track.id}
+              onClick={() => handleAddTrack(track.id)}
+              variant='contained'
+              color='success'
+              className='edit-wishlist-button'
+            >
+              Add Track to Watchlist
+            </Button>
+            <Button
+              key={track.name}
+              onClick={() => handleDeleteTrack(track.id)}
+              variant='contained'
+              color='error'
+              className='edit-wishlist-button'
+            >
+              Delete Track from Watchlist
+            </Button>
+          </div>
         </div>
       ))}
     </div>

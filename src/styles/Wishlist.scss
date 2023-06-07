@@ -1,0 +1,38 @@
+.wishlist-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+  text-align: center;
+
+  .user-wishlist-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-right: 5vw;
+
+    .user-wishlist-title-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .user-wishlist-tracks-container {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  h1 {
+    font-size: 32px;
+    margin-bottom: 1.5vh;
+  }
+
+  h4 {
+    font-size: 18px;
+    margin-bottom: 1vh;
+  }
+}
