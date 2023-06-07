@@ -5,7 +5,6 @@ import '../styles/Home.scss';
 export default function Home() {
   const [isLoggedIn, setIsLoggedIn] = useAuthenticated();
 
-  // return <>{isLoggedIn ? <Wishlist /> : <LoginAndRegister />}</>;
   return (
     <div className='home-container'>
       <h1>🎧 WISHLIST APP 🎧</h1>

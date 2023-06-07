@@ -16,7 +16,6 @@ export default function Wishlist() {
     API.GET(API.ENDPOINTS.singleWishlist(id)).then(({ data }) => {
       setUserData(data);
       setIsUpdated(false);
-      console.log(data);
     });
   }, [id, isUpdated]);
 
