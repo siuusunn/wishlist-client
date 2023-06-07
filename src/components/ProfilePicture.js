@@ -12,7 +12,9 @@ import { FocusOn } from '@cloudinary/url-gen/qualifiers/focusOn';
 export default function ProfilePicture({
   cloudinaryImageId,
   imageWidth,
-  imageHeight
+  imageHeight,
+  radius,
+  backgroundColor
 }) {
   const cld = new Cloudinary({
     cloud: {
@@ -23,13 +25,22 @@ export default function ProfilePicture({
   // Instantiate a CloudinaryImage object for the image with the public ID, 'docs/models'.
   const myImage = cld.image(cloudinaryImageId);
 
-  myImage.resize(
-    thumbnail()
-      .width(imageWidth)
-      .height(imageHeight)
-      .gravity(focusOn(FocusOn.face()))
-  );
-  // .roundCorners(byRadius(50)); // Crop the image, focusing on the face.
+  // myImage.resize(
+  //   thumbnail()
+  //     .width(imageWidth)
+  //     .height(imageHeight)
+  //     .gravity(focusOn(FocusOn.face()))
+  // );
+
+  myImage
+    .resize(
+      thumbnail()
+        .width(imageWidth)
+        .height(imageHeight)
+        .gravity(focusOn(FocusOn.face()))
+    ) // Crop the image, focusing on the face.
+    .roundCorners(byRadius(radius))
+    .backgroundColor(backgroundColor); // Round the corners.
 
   return <AdvancedImage cldImg={myImage} />;
 }

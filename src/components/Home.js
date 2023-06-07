@@ -9,9 +9,9 @@ export default function Home() {
     <>
       <h1>🎧 WISHLIST APP 🎧</h1>
       <h3>🎵 Add your favorite tracks to your wishlist 🎶</h3>
-      <Link to='/register'>
-        <h4>📝 Register Now</h4>
-      </Link>
+      <h4>
+        📝 <Link to='/register'>Register Now</Link>
+      </h4>
       <h4>
         ✍️ Have an account? <Link to='/login'>Sign in!</Link>
       </h4>

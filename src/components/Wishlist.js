@@ -32,8 +32,10 @@ export default function Wishlist() {
       />
       <ProfilePicture
         cloudinaryImageId={userData?.owner.profile_image}
-        imageWidth={100}
-        imageHeight={100}
+        imageWidth={120}
+        imageHeight={120}
+        radius={20}
+        backgroundColor={'white'}
       />
       <h1>{userData?.owner.username}'s Wishlist</h1>
       {userData?.tracks.map((track) => (
