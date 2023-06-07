@@ -8,8 +8,9 @@ function TrackSearch({ wishlistId, wishlistData, handleUpdate }) {
 
   const handleSearch = async () => {
     try {
-      API.GET(API.ENDPOINTS.searchTrack(searchQuery)).then(({ data }) => {
+      API.GET(API.ENDPOINTS.searchTrackByISRC(searchQuery)).then(({ data }) => {
         setTracks(data);
+        console.log(tracks);
       });
     } catch (error) {
       console.log(error);
