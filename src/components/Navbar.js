@@ -86,13 +86,22 @@ export default function Navbar() {
             </MenuItem>
 
             {AUTH.getSuperUser() === 'true' ? (
-              <MenuItem>
-                <Typography textAlign='center'>
-                  <Link to='/additem' className='navbar-item'>
-                    ALL WISHLISTS
-                  </Link>
-                </Typography>
-              </MenuItem>
+              <>
+                <MenuItem>
+                  <Typography textAlign='center'>
+                    <Link to='/additem' className='navbar-item'>
+                      ALL WISHLISTS
+                    </Link>
+                  </Typography>
+                </MenuItem>
+                <MenuItem>
+                  <Typography textalign='center'>
+                    <Link to='/' onClick={logout}>
+                      LOGOUT
+                    </Link>
+                  </Typography>
+                </MenuItem>
+              </>
             ) : (
               <></>
             )}
