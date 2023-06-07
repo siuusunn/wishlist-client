@@ -25,6 +25,13 @@ export default function Wishlist() {
 
   return (
     <div className='wishlist-container'>
+      <div className='search-container'>
+        <Search
+          wishlistId={id}
+          wishlistData={userData}
+          handleUpdate={handleUpdate}
+        />
+      </div>
       <div className='user-wishlist-container'>
         <div className='user-wishlist-title-container'>
           <ProfilePicture
@@ -42,18 +49,11 @@ export default function Wishlist() {
             <div key={track.id}>
               <li>
                 {track?.artist.map((artist) => artist.name)} - {track.title} -{' '}
-                {track.isrc}
+                {track.duration} - {track.isrc}
               </li>
             </div>
           ))}
         </ol>
-      </div>
-      <div className='search-container'>
-        <Search
-          wishlistId={id}
-          wishlistData={userData}
-          handleUpdate={handleUpdate}
-        />
       </div>
     </div>
   );

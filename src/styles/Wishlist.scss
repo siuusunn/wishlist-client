@@ -1,17 +1,18 @@
 .wishlist-container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   height: 80vh;
   text-align: center;
+  padding-top: 5vh;
 
   .user-wishlist-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-right: 5vw;
+    margin-top: 5vh;
 
     .user-wishlist-title-container {
       display: flex;

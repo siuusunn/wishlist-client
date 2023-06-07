@@ -4,9 +4,20 @@ import { Button } from '@mui/material';
 import '../styles/Search.scss';
 
 function TrackSearch({ wishlistId, wishlistData, handleUpdate }) {
+  const [showModal, setShowModal] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [isUpdated, setIsUpdated] = useState(false);
   const [tracks, setTracks] = useState([]);
+
+  const handleClickModal = (e) => {
+    e.preventDefault();
+    setShowModal(true);
+  };
+
+  const handleCloseModal = (e) => {
+    e.preventDefault();
+    setShowModal(false);
+  };
 
   const handleSearch = async () => {
     try {
@@ -37,6 +48,7 @@ function TrackSearch({ wishlistId, wishlistData, handleUpdate }) {
     } catch (error) {
       console.log(error);
     }
+    setShowModal(false);
   };
 
   const handleDeleteTrack = async (trackId) => {
@@ -60,54 +72,69 @@ function TrackSearch({ wishlistId, wishlistData, handleUpdate }) {
     } catch (error) {
       console.log(error);
     }
+    setShowModal(false);
   };
 
   return (
     <div className='search-component-container'>
-      <h1>Add/Delete Track</h1>
-      <div>
-        <input
-          type='text'
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          placeholder='ISRC'
-        />
-        <button onClick={handleSearch}>Search</button>
-      </div>
+      <Button onClick={handleClickModal} variant='contained'>
+        Add/Delete Track
+      </Button>
+      {showModal ? (
+        <div className='modal'>
+          <div className='modal-content'>
+            <h1>Add/Delete Track</h1>
+            <div className='search-input-container'>
+              <input
+                type='text'
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder='ISRC'
+              />
+              <button onClick={handleSearch}>Search</button>
+            </div>
 
-      {tracks?.map((track) => (
-        <div key={track.id}>
-          <p>Title: {track.title}</p>
-          <p>
-            Artists:{' '}
-            {track?.artist.map((artist) => (
-              <li key={artist.id}>{artist.name}</li>
+            {tracks?.map((track) => (
+              <div key={track.id} className='track-details'>
+                <p>Title: {track.title}</p>
+                <p>
+                  Artists:{' '}
+                  {track?.artist.map((artist) => (
+                    <li key={artist.id}>{artist.name}</li>
+                  ))}
+                </p>
+                <p>Duration: {track.duration}</p>
+                <p>ISRC: {track.isrc}</p>
+                <div className='search-buttons-container'>
+                  <Button
+                    key={track.id}
+                    onClick={() => handleAddTrack(track.id)}
+                    variant='contained'
+                    color='success'
+                    className='edit-wishlist-button'
+                  >
+                    Add Track to Watchlist
+                  </Button>
+                  <Button
+                    key={track.name}
+                    onClick={() => handleDeleteTrack(track.id)}
+                    variant='contained'
+                    color='error'
+                    className='edit-wishlist-button'
+                  >
+                    Delete Track from Watchlist
+                  </Button>
+                </div>
+              </div>
             ))}
-          </p>
-          <p>Duration: {track.duration}</p>
-          <p>ISRC: {track.isrc}</p>
-          <div className='search-buttons-container'>
-            <Button
-              key={track.id}
-              onClick={() => handleAddTrack(track.id)}
-              variant='contained'
-              color='success'
-              className='edit-wishlist-button'
-            >
-              Add Track to Watchlist
-            </Button>
-            <Button
-              key={track.name}
-              onClick={() => handleDeleteTrack(track.id)}
-              variant='contained'
-              color='error'
-              className='edit-wishlist-button'
-            >
-              Delete Track from Watchlist
-            </Button>
+            <span className='close' onClick={handleCloseModal}>
+              <Button variant='outlined'>CLOSE</Button>
+            </span>
           </div>
         </div>
-      ))}
+      ) : (
+        <></>
+      )}
     </div>
   );
 }
