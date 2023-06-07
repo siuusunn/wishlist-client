@@ -73,131 +73,126 @@ export default function Register() {
   };
 
   return (
-    <Paper
-      elevation={3}
-      sx={{ width: '25dvw', height: '80dvh', mt: '5dvh', ml: '1dvw' }}
-    >
-      <div className='register-container'>
-        <h1 className='register-title'>REGISTER</h1>
-        <form onSubmit={handleSubmit}>
-          <div className='register-input-container'>
-            <label htmlFor='username' className='register-label'>
-              USERNAME:
-            </label>
+    <div className='register-container'>
+      <h1 className='register-title'>REGISTER</h1>
+      <form onSubmit={handleSubmit}>
+        <div className='register-input-container'>
+          <label htmlFor='username' className='register-label'>
+            USERNAME:
+          </label>
+          <input
+            type='text'
+            id='username'
+            name='username'
+            onChange={handleChange}
+            className='register-input'
+            required
+          ></input>
+          <label htmlFor='email' className='register-label'>
+            EMAIL:
+          </label>
+          <input
+            type='email'
+            id='register-email'
+            name='email'
+            onChange={handleChange}
+            className='register-input'
+            required
+          ></input>
+          <label htmlFor='password' className='register-label'>
+            PASSWORD:
+          </label>
+          <div className='register-password-div'>
             <input
-              type='text'
-              id='username'
-              name='username'
+              type={showPassword ? 'text' : 'password'}
+              id='register-password'
+              name='password'
               onChange={handleChange}
-              className='register-input'
+              className='register-password-input'
               required
             ></input>
-            <label htmlFor='email' className='register-label'>
-              EMAIL:
-            </label>
-            <input
-              type='email'
-              id='register-email'
-              name='email'
-              onChange={handleChange}
-              className='register-input'
-              required
-            ></input>
-            <label htmlFor='password' className='register-label'>
-              PASSWORD:
-            </label>
-            <div className='register-password-div'>
-              <input
-                type={showPassword ? 'text' : 'password'}
-                id='register-password'
-                name='password'
-                onChange={handleChange}
-                className='register-password-input'
-                required
-              ></input>
-              {showPassword ? (
-                <VisibilityOutlined
-                  className='visibility-button'
-                  onClick={handleClickShowPassword}
-                  onMouseDown={handleMouseDownPassword}
-                />
-              ) : (
-                <VisibilityOffOutlined
-                  className='visibility-button'
-                  onClick={handleClickShowPassword}
-                  onMouseDown={handleMouseDownPassword}
-                />
-              )}
-            </div>
-            <label htmlFor='password_confirmation' className='register-label'>
-              PASSWORD CONFIRMATION:
-            </label>
-            <div className='register-password-div'>
-              <input
-                type={showPassword ? 'text' : 'password'}
-                id='password_confirmation'
-                name='password_confirmation'
-                onChange={handleChange}
-                className='register-password-input'
-                required
-              ></input>
-              {showPassword ? (
-                <VisibilityOutlined
-                  className='visibility-button'
-                  onClick={handleClickShowPassword}
-                  onMouseDown={handleMouseDownPassword}
-                />
-              ) : (
-                <VisibilityOffOutlined
-                  className='visibility-button'
-                  onClick={handleClickShowPassword}
-                  onMouseDown={handleMouseDownPassword}
-                />
-              )}
-            </div>
-            <label htmlFor='first_name' className='register-label'>
-              FIRST NAME:
-            </label>
-            <input
-              type='first_name'
-              id='first_name'
-              name='first_name'
-              onChange={handleChange}
-              className='register-input'
-              required
-            ></input>
-            <label htmlFor='last_name' className='register-label'>
-              LAST NAME:
-            </label>
-            <input
-              type='last_name'
-              id='last_name'
-              name='last_name'
-              onChange={handleChange}
-              className='register-input'
-              required
-            ></input>
-            <label htmlFor='profile_image' className='register-label'>
-              PROFILE PICTURE:
-            </label>
-            <input
-              type='file'
-              id='profile_image'
-              name='profile_image'
-              onChange={handleFileChange}
-              required
-            ></input>
-            <Button
-              variant='contained'
-              type='submit'
-              className='register-button'
-              sx={{ mt: '5dvh' }}
-            >
-              SIGN UP
-            </Button>
+            {showPassword ? (
+              <VisibilityOutlined
+                className='visibility-button'
+                onClick={handleClickShowPassword}
+                onMouseDown={handleMouseDownPassword}
+              />
+            ) : (
+              <VisibilityOffOutlined
+                className='visibility-button'
+                onClick={handleClickShowPassword}
+                onMouseDown={handleMouseDownPassword}
+              />
+            )}
           </div>
-        </form>
-      </div>
-    </Paper>
+          <label htmlFor='password_confirmation' className='register-label'>
+            PASSWORD CONFIRMATION:
+          </label>
+          <div className='register-password-div'>
+            <input
+              type={showPassword ? 'text' : 'password'}
+              id='password_confirmation'
+              name='password_confirmation'
+              onChange={handleChange}
+              className='register-password-input'
+              required
+            ></input>
+            {showPassword ? (
+              <VisibilityOutlined
+                className='visibility-button'
+                onClick={handleClickShowPassword}
+                onMouseDown={handleMouseDownPassword}
+              />
+            ) : (
+              <VisibilityOffOutlined
+                className='visibility-button'
+                onClick={handleClickShowPassword}
+                onMouseDown={handleMouseDownPassword}
+              />
+            )}
+          </div>
+          <label htmlFor='first_name' className='register-label'>
+            FIRST NAME:
+          </label>
+          <input
+            type='first_name'
+            id='first_name'
+            name='first_name'
+            onChange={handleChange}
+            className='register-input'
+            required
+          ></input>
+          <label htmlFor='last_name' className='register-label'>
+            LAST NAME:
+          </label>
+          <input
+            type='last_name'
+            id='last_name'
+            name='last_name'
+            onChange={handleChange}
+            className='register-input'
+            required
+          ></input>
+          <label htmlFor='profile_image' className='register-label'>
+            PROFILE PICTURE:
+          </label>
+          <input
+            type='file'
+            id='profile_image'
+            name='profile_image'
+            onChange={handleFileChange}
+            required
+          ></input>
+          <Button
+            variant='contained'
+            type='submit'
+            className='register-button'
+            sx={{ mt: '5dvh' }}
+          >
+            SIGN UP
+          </Button>
+        </div>
+      </form>
+    </div>
   );
 }

@@ -2,6 +2,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.register-title {
+  text-align: center;
+  margin-bottom: 2vh;
 }
 
 .register-input-container {
@@ -12,12 +19,16 @@
 
 .register-label {
   font-size: 16px;
-  margin-top: 1dvh;
+  margin-top: 1vh;
 }
 
 .register-input {
-  width: 16dvw;
-  margin-top: 1dvh;
+  width: 16vw;
+  margin-top: 1vh;
+
+  @media (max-width: 768px) {
+    width: 80vw;
+  }
 }
 
 .register-password-div {
@@ -27,13 +38,17 @@
 }
 
 .register-password-input {
-  width: 15dvw;
-  margin-top: 1dvh;
-  margin-bottom: 2dvh;
+  width: 15vw;
+  margin-top: 1vh;
+  margin-bottom: 2vh;
+
+  @media (max-width: 768px) {
+    width: 80vw;
+  }
 }
 
 .visibility-button {
   cursor: pointer;
-  margin-left: 0.2dvw;
+  margin-left: 0.2vw;
   padding: 0;
 }
