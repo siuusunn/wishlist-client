@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { API } from '../lib/api';
+import '../styles/AllTracks.scss';
 
 export default function AllTracks() {
   const [allTracks, setAllTracks] = useState([]);
@@ -10,7 +11,7 @@ export default function AllTracks() {
   }, []);
 
   return (
-    <div>
+    <div className='all-tracks-container'>
       <h1>ALL TRACKS</h1>
       <table>
         <thead>

@@ -1,14 +1,27 @@
 import { useState } from 'react';
 import { API } from '../lib/api';
+import { Button } from '@mui/material';
+import '../styles/Search.scss';
 
 function TrackSearch({ wishlistId, wishlistData, handleUpdate }) {
+  const [showModal, setShowModal] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [isUpdated, setIsUpdated] = useState(false);
   const [tracks, setTracks] = useState([]);
 
+  const handleClickModal = (e) => {
+    e.preventDefault();
+    setShowModal(true);
+  };
+
+  const handleCloseModal = (e) => {
+    e.preventDefault();
+    setShowModal(false);
+  };
+
   const handleSearch = async () => {
     try {
-      API.GET(API.ENDPOINTS.searchTrack(searchQuery)).then(({ data }) => {
+      API.GET(API.ENDPOINTS.searchTrackByISRC(searchQuery)).then(({ data }) => {
         setTracks(data);
       });
     } catch (error) {
@@ -35,6 +48,7 @@ function TrackSearch({ wishlistId, wishlistData, handleUpdate }) {
     } catch (error) {
       console.log(error);
     }
+    setShowModal(false);
   };
 
   const handleDeleteTrack = async (trackId) => {
@@ -58,36 +72,69 @@ function TrackSearch({ wishlistId, wishlistData, handleUpdate }) {
     } catch (error) {
       console.log(error);
     }
+    setShowModal(false);
   };
 
   return (
-    <div>
-      <input
-        type='text'
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
-      />
-      <button onClick={handleSearch}>Search</button>
+    <div className='search-component-container'>
+      <Button onClick={handleClickModal} variant='contained'>
+        Add/Delete Track
+      </Button>
+      {showModal ? (
+        <div className='modal'>
+          <div className='modal-content'>
+            <h1>Add/Delete Track</h1>
+            <div className='search-input-container'>
+              <input
+                type='text'
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder='ISRC'
+              />
+              <button onClick={handleSearch}>Search</button>
+            </div>
 
-      {tracks?.map((track) => (
-        <div key={track.id}>
-          <h4>Title: {track.title}</h4>
-          <h4>
-            Artists:{' '}
-            {track?.artist.map((artist) => (
-              <li key={artist.id}>{artist.name}</li>
+            {tracks?.map((track) => (
+              <div key={track.id} className='track-details'>
+                <p>Title: {track.title}</p>
+                <p>
+                  Artists:{' '}
+                  {track?.artist.map((artist) => (
+                    <li key={artist.id}>{artist.name}</li>
+                  ))}
+                </p>
+                <p>Duration: {track.duration}</p>
+                <p>ISRC: {track.isrc}</p>
+                <div className='search-buttons-container'>
+                  <Button
+                    key={track.id}
+                    onClick={() => handleAddTrack(track.id)}
+                    variant='contained'
+                    color='success'
+                    className='edit-wishlist-button'
+                  >
+                    Add Track to Watchlist
+                  </Button>
+                  <Button
+                    key={track.name}
+                    onClick={() => handleDeleteTrack(track.id)}
+                    variant='contained'
+                    color='error'
+                    className='edit-wishlist-button'
+                  >
+                    Delete Track from Watchlist
+                  </Button>
+                </div>
+              </div>
             ))}
-          </h4>
-          <h4>Duration: {track.duration}</h4>
-          <h4>ISRC: {track.isrc}</h4>
-          <button key={track.id} onClick={() => handleAddTrack(track.id)}>
-            Add Track to Watchlist
-          </button>
-          <button key={track.name} onClick={() => handleDeleteTrack(track.id)}>
-            Delete Track from Watchlist
-          </button>
+            <span className='close' onClick={handleCloseModal}>
+              <Button variant='outlined'>CLOSE</Button>
+            </span>
+          </div>
         </div>
-      ))}
+      ) : (
+        <></>
+      )}
     </div>
   );
 }
